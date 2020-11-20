@@ -47,12 +47,6 @@ public class StackWalkerDemo {
         .orElse("Unknown caller");
   }
 
-  public void findCaller() {
-    Class<?> caller = StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE)
-        .getCallerClass();
-    System.out.println(caller.getCanonicalName());
-  }
-
   public void printStackTrace(List<StackFrame> stackTrace) {
     for (StackFrame stackFrame : stackTrace) {
       System.out.println(
