@@ -1,5 +1,6 @@
 package app.java9;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -38,10 +39,17 @@ public class CompletableFutureUnitTest {
    */
   @Test
   public void timeoutException() throws InterruptedException {
-    CompletableFuture<Object> completableFuture = new CompletableFuture();
-    completableFuture.orTimeout(1, TimeUnit.SECONDS);
+    CompletableFuture<Integer> completableFuture =
+        CompletableFuture.supplyAsync(() -> {
+          try {
+            TimeUnit.SECONDS.sleep(5);
+          } catch (InterruptedException ex) {
+            ex.printStackTrace();
+          }
+          return 3;
+        }).orTimeout(1, TimeUnit.SECONDS);
 
-    Thread.sleep(2000);
+    TimeUnit.SECONDS.sleep(2);
 
     assertTrue(completableFuture.isDone());
 
@@ -68,20 +76,27 @@ public class CompletableFutureUnitTest {
   }
 
   /**
-   * An delayed result can be achieved by using the completeOnTimeout method. This will be resolved
+   * A delayed result can be achieved by using the completeOnTimeout method. This will be resolved
    * with a given input if it stays unresolved after 1 second.
    *
    * @throws InterruptedException
    */
   @Test
-  public void completeOnTimeout() throws InterruptedException {
-    Object input = new Object();
-    CompletableFuture<Object> completableFuture = new CompletableFuture<>();
-    completableFuture.completeOnTimeout(input, 1, TimeUnit.SECONDS);
+  public void completeOnTimeout() throws InterruptedException, ExecutionException {
+    CompletableFuture<Integer> completableFuture =
+        CompletableFuture.supplyAsync(() -> {
+          try {
+            TimeUnit.SECONDS.sleep(5);
+          } catch (InterruptedException ex) {
+            ex.printStackTrace();
+          }
+          return 3;
+        }).completeOnTimeout(4, 1, TimeUnit.SECONDS);
 
     Thread.sleep(2000);
 
     assertTrue(completableFuture.isDone());
+    assertEquals(4, completableFuture.get().intValue());
   }
 }
 

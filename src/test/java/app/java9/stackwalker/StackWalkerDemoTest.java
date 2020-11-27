@@ -5,7 +5,7 @@ import org.junit.Test;
 public class StackWalkerDemoTest {
 
   @Test
-  public void giveStalkWalker_whenWalkingTheStack_thenShowStackFrames() {
+  public void walkingTheStack() {
     new StackWalkerDemo().methodOne();
   }
 
