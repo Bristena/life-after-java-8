@@ -71,10 +71,10 @@ public class ProcessApiUnitTest {
 
     Stream<ProcessHandle> children = ProcessHandle.current().children();
     children.filter(ProcessHandle::isAlive)
-        .forEach(ph -> System.out.println("PID: " + ph.pid() + " cmd: " + ph.info().command()));
+        .forEach(ph -> System.out.println("PID child: " + ph.pid() + " cmd: " + ph.info().command()));
     Stream<ProcessHandle> descendants = ProcessHandle.current().descendants();
     descendants.filter(ProcessHandle::isAlive)
-        .forEach(ph -> System.out.println("PID: " + ph.pid() + " cmd: " + ph.info().command()));
+        .forEach(ph -> System.out.println("PID descendent: " + ph.pid() + " cmd: " + ph.info().command()));
   }
 
   @Test
