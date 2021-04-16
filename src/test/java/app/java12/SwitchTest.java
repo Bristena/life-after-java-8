@@ -2,9 +2,6 @@ package app.java12;
 
 import static org.junit.Assert.assertEquals;
 
-import app.java14.Animal;
-import app.java14.Cat;
-import app.java14.Dog;
 import java.text.NumberFormat;
 import java.util.Locale;
 import org.junit.Test;
@@ -34,12 +31,15 @@ public class Java12Test {
     }
 
     //multiple labels in one switch label
-    switch (day) {
-      case "MONDAY", "FRIDAY", "SUNDAY" -> System.out.println(6);
-      case "TUESDAY" -> System.out.println(7);
-      case "THURSDAY", "SATURDAY" -> System.out.println(8);
-      case "WEDNESDAY" -> System.out.println(9);
-    }
+    String result = switch (day) {
+      case "MONDAY", "FRIDAY", "SUNDAY" -> "6";
+      case "TUESDAY" -> "7";
+      case "THURSDAY", "SATURDAY" -> "8";
+      case "WEDNESDAY" -> "9";
+      default -> "default";
+    };
+
+    assertEquals(result, "6");
 
     //variable in switch
     int numLetters;

@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class Java14Test {
+public class PatternMatchingInstanceOfTest {
 
   @Test
   public void patternMatchingInstanceOf() {

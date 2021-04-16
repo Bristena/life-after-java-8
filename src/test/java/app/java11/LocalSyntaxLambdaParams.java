@@ -3,7 +3,7 @@ package app.java11;
 import java.util.Arrays;
 import org.junit.Test;
 
-public class Java11LocalSyntaxLambdaParams {
+public class LocalSyntaxLambdaParams {
 
   @Test
   public void localLocalSyntaxLambdaParams () {

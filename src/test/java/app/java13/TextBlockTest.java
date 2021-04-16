@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class Java13Test {
+public class Java13TextBlockTest {
 
   @Test
   public void textBlock() {
